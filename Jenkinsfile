@@ -32,30 +32,7 @@ pipeline {
         }
       }
     }
-    stage("Sonar Report & Quality Gate") {
-      when {
-        branch DEPLOY_BRANCH
-      }
-      steps {
-        withDocker() {
-          script {
-            steps.withSonarQubeEnv("sonar") {
-              maven param: 'sonar:sonar -Dsonar.scm.disabled=true -Dsonar.sources=src/main -Dsonar.projectName=commons'
-            }
-          }
-        }
-        timeout(time: 1, unit: 'HOURS') {
-          waitForQualityGate abortPipeline: false
-        }
-      }
-    }
-    
     stage("Publish (optional)") {
-      when {
-        allOf {
-          branch DEPLOY_BRANCH
-        }
-      }
       steps {
           withDocker(){
             script{
