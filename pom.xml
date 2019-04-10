@@ -396,4 +396,21 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <!-- ID must map to the settings.xml's entry  -->
+            <id>ehex-maven-releases</id>
+            <layout>default</layout>
+            <url>https://artifacts.ehex.de/repository/ehex-maven-releases</url>
+        </repository>
+        <snapshotRepository>
+            <!-- ID must map to the settings.xml's entry  -->
+            <id>ehex-maven-snapshots</id>
+            <layout>default</layout>
+            <url>https://artifacts.ehex.de/repository/ehex-maven-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+
 </project>
