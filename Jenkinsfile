@@ -54,14 +54,6 @@ pipeline {
       when {
         allOf {
           branch DEPLOY_BRANCH
-	   not {
-              allOf {
-                  expression { isTag() }
-                  expression { nexus.has(artifactId: 'commons-api',
-                        groupId: 'de.ehex',
-                        version: env.TAG_NAME) }
-              }
-          }
         }
       }
       steps {

@@ -1,5 +1,0 @@
-<configuration>
-    <exclusions>
-        <exclusion>.m2</exclusion>
-    </exclusions>
-</configuration>
