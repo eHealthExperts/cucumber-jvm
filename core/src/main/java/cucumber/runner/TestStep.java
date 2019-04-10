@@ -57,6 +57,12 @@ abstract class TestStep implements cucumber.api.TestStep {
         Result result = mapStatusToResult(status, error, stopTimeNanos - startTimeNanos);
         scenario.add(result);
         bus.send(new TestStepFinished(stopTimeNanos, stopTimeMillis, testCase, this, result));
+
+        if (error != null) {
+            if (Boolean.getBoolean("cucumber.executeNextStep")){
+                return false;
+            }
+        }
         return !result.is(Result.Type.PASSED);
     }
 
