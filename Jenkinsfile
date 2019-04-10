@@ -12,10 +12,6 @@ pipeline {
     timestamps()
   }
 
-  environment {
-    DEPLOY_BRANCH = "master"
-  }
-
   stages {
     stage("Checkout SCM") {
       steps {
@@ -36,7 +32,7 @@ pipeline {
       steps {
           withDocker(){
             script{
-                maven goal: "deploy", param: "-DskipTests=true"
+                maven goal: "deploy", param: "-DaltReleaseDeploymentRepository=ehex-maven-releases::https://artifacts.ehex.de/repository/ehex-maven-releases -DaltSnapshotDeploymentRepository=ehex-maven-snapshots::https://artifacts.ehex.de/repository/ehex-maven-snapshots -DskipTests=true -Pehex-deploy"
             }
           }
       }

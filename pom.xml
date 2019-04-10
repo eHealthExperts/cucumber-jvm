@@ -275,6 +275,27 @@
                 </plugins>
             </build>
         </profile>
+
+        <profile>
+            <id>ehex-deploy</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <!-- Disable Sonatype Nexus Extensions for Wren Security's Repo -->
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <extensions>false</extensions>
+                        <executions>
+                            <execution>
+                                <id>injected-nexus-deploy</id>
+                                <phase>none</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
     <build>
