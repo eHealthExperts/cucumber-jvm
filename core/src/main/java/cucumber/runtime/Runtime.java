@@ -18,7 +18,7 @@ import cucumber.runtime.io.ResourceLoader;
 import cucumber.runtime.io.ResourceLoaderClassFinder;
 import cucumber.runtime.model.CucumberFeature;
 import cucumber.runtime.model.FeatureLoader;
-import cucumber.runtime.order.OrderType;
+import cucumber.runtime.order.PickleOrder;
 import gherkin.events.PickleEvent;
 import io.cucumber.core.logging.Logger;
 import io.cucumber.core.logging.LoggerFactory;
@@ -51,7 +51,7 @@ public class Runtime {
     private final FeatureSupplier featureSupplier;
     private final Plugins plugins;
     private final ExecutorService executor;
-    private final OrderType orderType;
+    private final PickleOrder pickleOrder;
 
     public Runtime(final Plugins plugins,
                    final RuntimeOptions runtimeOptions,
@@ -60,7 +60,7 @@ public class Runtime {
                    final RunnerSupplier runnerSupplier,
                    final FeatureSupplier featureSupplier,
                    final ExecutorService executor,
-                   final OrderType orderType) {
+                   final PickleOrder pickleOrder) {
 
         this.plugins = plugins;
         this.filters = filters;
@@ -69,7 +69,7 @@ public class Runtime {
         this.featureSupplier = featureSupplier;
         this.executor = executor;
         this.exitStatus = new ExitStatus(runtimeOptions);
-        this.orderType = orderType;
+        this.pickleOrder = pickleOrder;
         exitStatus.setEventPublisher(bus);
     }
 
@@ -92,7 +92,7 @@ public class Runtime {
             }
         }
         
-        final List<PickleEvent> orderedEvents = orderType.orderPickleEvents(filteredEvents);
+        final List<PickleEvent> orderedEvents = pickleOrder.orderPickleEvents(filteredEvents);
         final List<PickleEvent> limitedEvents = filters.limitPickleEvents(orderedEvents);
 
          final List<Future<?>> executingPickles = new ArrayList<>();
@@ -243,8 +243,8 @@ public class Runtime {
                 : new FeaturePathFeatureSupplier(featureLoader, this.runtimeOptions);
 
             final Filters filters = new Filters(this.runtimeOptions);
-            final OrderType orderType = runtimeOptions.getOrderType();
-            return new Runtime(plugins, this.runtimeOptions, eventBus, filters, runnerSupplier, featureSupplier, executor, orderType);
+            final PickleOrder pickleOrder = runtimeOptions.getPickleOrder();
+            return new Runtime(plugins, this.runtimeOptions, eventBus, filters, runnerSupplier, featureSupplier, executor, pickleOrder);
         }
     }
 
