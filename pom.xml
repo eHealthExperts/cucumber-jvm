@@ -447,15 +447,15 @@
     <distributionManagement>
         <repository>
             <!-- ID must map to the settings.xml's entry  -->
-            <id>ehex-maven-releases</id>
+            <id>ekon-maven-releases</id>
             <layout>default</layout>
-            <url>https://artifacts.ehex.de/repository/ehex-maven-releases</url>
+            <url>https://artifacts.ehex.de/repository/ekon-maven-releases</url>
         </repository>
         <snapshotRepository>
             <!-- ID must map to the settings.xml's entry  -->
-            <id>ehex-maven-snapshots</id>
+            <id>ekon-maven-snapshots</id>
             <layout>default</layout>
-            <url>https://artifacts.ehex.de/repository/ehex-maven-snapshots</url>
+            <url>https://artifacts.ehex.de/repository/ekon-maven-snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
