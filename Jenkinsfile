@@ -38,7 +38,7 @@ pipeline {
       steps {
           withDocker(){
             script{
-                maven goal: "deploy", param: "-DaltReleaseDeploymentRepository=ekon-maven-releases::https://artifacts.ehex.de/repository/ekon-maven-releases -DaltSnapshotDeploymentRepositry=ekon-maven-releases::https://artifacts.ehex.de/repository/ehex-maven-releases -DskipTests=true -Pehex-deploy  -Ddocker.username=${NEXUS_CREDENTIALS_USR} -Ddocker.password=${NEXUS_CREDENTIALS_PSW}"
+                maven goal: "-DskipTests=true -Pehex-deploy -V -U -B deploy"
             }
           }
       }
