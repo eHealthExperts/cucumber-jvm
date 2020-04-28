@@ -444,20 +444,26 @@
         </pluginManagement>
     </build>
 
-    <distributionManagement>
-        <repository>
-            <!-- ID must map to the settings.xml's entry  -->
-            <id>ekon-maven-releases</id>
-            <layout>default</layout>
-            <url>https://artifacts.ehex.de/repository/ekon-maven-releases</url>
-        </repository>
-        <snapshotRepository>
-            <!-- ID must map to the settings.xml's entry  -->
-            <id>ekon-maven-snapshots</id>
-            <layout>default</layout>
-            <url>https://artifacts.ehex.de/repository/ekon-maven-snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
+  <distributionManagement>
+    <repository>
+      <id>nexus-deploy</id>
+      <name>eKon Releases</name>
+      <url>https://artifacts.ehex.de/repository/ekon-maven-releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>nexus-deploy</id>
+      <name>eKon Snapshots</name>
+      <url>https://artifacts.ehex.de/repository/ekon-maven-snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+  
+  <repositories>
+    <repository>
+      <id>nexus-deploy</id>
+      <name>eKon maven group</name>
+      <url>https://artifacts.ehex.de/repository/ekon-maven-group</url>
+    </repository>
+  </repositories>
 
 
 </project>
