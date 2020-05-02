@@ -27,18 +27,18 @@ pipeline {
 
     stage("Build & Test") {
       steps {
-        withDocker(){
+        withDocker(from:'maven:3-jdk-11'){
             script{
-                maven goal: "clean verify -Psonar"
+                mvn "clean verify -Psonar"
             }
         }
       }
     }
     stage("Publish (optional)") {
       steps {
-          withDocker(){
+          withDocker(from:'maven:3-jdk-11'){
             script{
-                maven goal: "-DskipTests=true -Pehex-deploy -V -U -B deploy"
+                mvn "-DskipTests=true -Pehex-deploy -V -U -B deploy"
             }
           }
       }
